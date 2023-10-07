@@ -1,5 +1,5 @@
 /* Copyright 2018 Sam Bingner All Rights Reserved
-	 */
+ */
 
 #ifndef _SNAPPY_H
 #define _SNAPPY_H
@@ -7,21 +7,24 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 @interface SBSnappy : NSObject
-@property (readonly) NSArray<NSString*> *snapshots;
+@property(readonly) NSArray<NSString *> *snapshots;
+@property(readonly, nonatomic, strong) NSString *path;
 
-+(SBSnappy*)snappyWithPath:(NSString*)path;
-+(NSString*)systemSnapshot;
--(SBSnappy*)initWithPath:(NSString*)path;
--(BOOL)hasSnapshot:(NSString*)snapshot;
--(NSArray<NSString*> *)snapshots;
--(NSString*)firstSnapshot;
--(BOOL)create:(NSString*)name;
--(BOOL)delete:(NSString*)name;
--(BOOL)rename:(NSString*)name to:(NSString*)newName;
--(BOOL)renameToStock;
--(BOOL)mount:(NSString*)name to:(NSString*)path withFlags:(uint32_t)flags;
--(BOOL)mount:(NSString*)name to:(NSString*)path;
--(BOOL)revert:(NSString*)name;
++ (instancetype)snappyWithPath:(NSString *)path;
++ (instancetype)snappyWithSystemSnapshot;
++ (NSString *)systemSnapshot;
+
+- (instancetype)initWithPath:(NSString *)path;
+- (BOOL)hasSnapshot:(NSString *)snapshot;
+- (NSArray<NSString *> *)snapshots;
+- (NSString *)firstSnapshot;
+- (BOOL)create:(NSString *)name;
+- (BOOL)delete:(NSString *)name;
+- (BOOL)rename:(NSString *)name to:(NSString *)newName;
+- (BOOL)renameToStock;
+- (BOOL)mount:(NSString *)name to:(NSString *)path withFlags:(uint32_t)flags;
+- (BOOL)mount:(NSString *)name to:(NSString *)path;
+- (BOOL)revert:(NSString *)name;
 @end
 #endif
 

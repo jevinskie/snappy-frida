@@ -1,1 +1,14 @@
+# libsnappy
+libsnappy.dylib
+
+# Theos
 .theos
+
+# npm
+dist/
+node_modules/
+
+# VS Code
+**/.vscode
+**/.vscode-ctags
+
