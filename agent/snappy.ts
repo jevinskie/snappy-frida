@@ -7,7 +7,9 @@ type TypedArray =
     | Int32Array
     | Uint32Array
     | Float32Array
-    | Float64Array;
+    | Float64Array
+    | BigInt64Array
+    | BigUint64Array;
 
 function getTypeName(obj: object): string {
     return Object.getPrototypeOf(obj)?.constructor?.name;
