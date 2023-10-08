@@ -25,7 +25,7 @@ def main():
     api = script.exports_sync
     libsnappy_bytes = b"hello_bytes"
     api.load()
-    script.post({"type": "dylib"}, libsnappy_bytes)
+    script.post({"type": "dylib"}, "hello_bytes")
     snapshots = api.snapshots()
     print(f"snapshots: {snapshots}")
     script.unload()
