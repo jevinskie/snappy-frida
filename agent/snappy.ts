@@ -9,11 +9,18 @@ type TypedArray =
     | Float32Array
     | Float64Array;
 
+function getTypeName(obj: object): string {
+    return Object.getPrototypeOf(obj)?.constructor?.name;
+}
+
 function isArrayBuffer(obj: object): boolean {
     return obj instanceof ArrayBuffer && !ArrayBuffer.isView(obj);
 }
 
 function getArrayBuffer(obj: object): ArrayBuffer {
+    if (!isArrayBuffer(obj)) {
+        throw new Error(`obj isn't an ArrayBuffer, it is a ${getTypeName(obj)}`);
+    }
     return obj as ArrayBuffer;
 }
 
@@ -23,11 +30,10 @@ function isTypedArray(obj: object): boolean {
 }
 
 function getTypedArray(obj: object): TypedArray {
+    if (!isArrayBuffer(obj)) {
+        throw new Error(`obj isn't a TypedArray, it is a ${getTypeName(obj)}`);
+    }
     return obj as TypedArray;
-}
-
-function getTypeName(obj: object): string {
-    return Object.getPrototypeOf(obj)?.constructor?.name;
 }
 
 function getTypedArrayValuesAsString(
