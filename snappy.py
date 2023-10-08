@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-import base64
+import subprocess
 import sys
-from pathlib import Path
 
 import frida
 
@@ -13,7 +12,8 @@ def on_message(message, data):
 
 def main():
     compiler = frida.Compiler()
-    bundle = compiler.build("agent/snappy.ts")
+    subprocess.run(["npx", "tsc"], check=True)
+    bundle = compiler.build("dist/snappy.js")
     print(f"bundle: {bundle}")
     self_dev = frida.get_device("local")
     apfsd_session = self_dev.attach("apfsd")
